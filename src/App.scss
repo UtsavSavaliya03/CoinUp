@@ -1,0 +1,134 @@
+.app {
+    font-family: "DM Sans", "DM Sans Placeholder", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.mobile-back-background {
+    background-image: url('https://framerusercontent.com/images/fL05Xd9obLvtuzyD9ZkP63apUI0.svg');
+    background-size: 35.88px auto;
+}
+
+.ant-dropdown-menu {
+    width: 180px;
+}
+
+/****** Slider scc ******/
+
+@media only screen and (min-width: 600px) {
+    .slider-wrapper {
+        body {
+            align-items: center;
+            background: #E3E3E3;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+        }
+
+        @mixin white-gradient {
+            background: linear-gradient(90deg, rgb(250 250 250) 16%, rgb(250 250 250 / 90%) 34%, rgb(250 250 250 / 79%) 51%, rgb(250 250 250 / 69%) 72%, rgb(250 250 250 / 55%) 83%, rgb(250 250 250 / 0%) 93%);
+        }
+
+        $animationSpeed: 30s;
+
+        // Animation
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-250px * 7))
+            }
+        }
+
+
+        // Styling
+        .slider {
+            background-color: transparent;
+            height: 600px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+
+            &::before,
+            &::after {
+                @include white-gradient;
+                content: "";
+                height: 600px;
+                position: absolute;
+                width: 200px;
+                z-index: 2;
+            }
+
+            &::after {
+                right: 0;
+                top: 0;
+                transform: rotateZ(180deg);
+            }
+
+            &::before {
+                left: 0;
+                top: 0;
+            }
+
+            .slide-track {
+                animation: scroll $animationSpeed linear infinite;
+                display: flex;
+                width: calc(250px * 10);
+            }
+
+            .slide {
+                height: 600px;
+                width: auto;
+                margin: 0px 24px;
+            }
+        }
+    }
+}
+
+/****** Faq collape scc ******/
+
+.custom-panel {
+    border-radius: 12px !important;
+    margin-bottom: 24px;
+    border: 0;
+    overflow: hidden;
+}
+
+.ant-collapse-item {
+    border-bottom: 1px solid rgb(231, 231, 231) !important;
+}
+
+.ant-collapse-header {
+    flex-direction: row-reverse;
+    align-items: center !important;
+}
+
+.custom-panel p {
+    margin: 0;
+}
+
+.faq-accounts {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.ant-collapse-borderless {
+    background-color: #ffffff;
+    border: 0;
+}
+
+.ant-collapse>.ant-collapse-item>.ant-collapse-header .ant-collapse-header-text {
+    margin-inline-end: auto;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.ant-collapse-borderless>.ant-collapse-item>.ant-collapse-content>.ant-collapse-content-box {
+    padding-top: 4px;
+    font-size: 15px;
+    font-weight: 400;
+}
