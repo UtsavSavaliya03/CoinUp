@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Dropdown } from 'antd';
 
 export default function Header() {
 
-  function useScrollDirection() {
-    const [scrollDirection, setScrollDirection] = React.useState(null);
+  const [visible, setVisible] = useState(false);
+
+  const useScrollDirection = () => {
+    const [scrollDirection, setScrollDirection] = useState(null);
 
     useEffect(() => {
       let lastScrollY = window?.pageYOffset;
@@ -28,22 +30,26 @@ export default function Header() {
 
   const scrollDirection = useScrollDirection();
 
+  const handleItemClick = () => {
+    setVisible(false); // Close the dropdown when an item is clicked
+  };
+
   const items = [
     {
       key: '1',
-      label: (<a href='#features' className='hover:text-[#878787] duration-300'>Features</a>)
+      label: (<a href='#features' onClick={handleItemClick} className='hover:text-[#878787] duration-300'>Features</a>)
     },
     {
       key: '2',
-      label: (<a href='#about' className='hover:text-[#878787] duration-300'>About</a>)
+      label: (<a href='#about' onClick={handleItemClick} className='hover:text-[#878787] duration-300'>About</a>)
     },
     {
       key: '3',
-      label: (<a href='#currencies' className='hover:text-[#878787] duration-300'>Coins</a>)
+      label: (<a href='#currencies' onClick={handleItemClick} className='hover:text-[#878787] duration-300'>Coins</a>)
     },
     {
       key: '4',
-      label: (<a href='#security' className='hover:text-[#878787] duration-300'>Security</a>)
+      label: (<a href='#security' onClick={handleItemClick} className='hover:text-[#878787] duration-300'>Security</a>)
     },
   ];
 
@@ -82,6 +88,9 @@ export default function Header() {
             menu={{ items }}
             destroyPopupOnHide={true}
             placement="bottomRight"
+            trigger={['click']}
+            onVisibleChange={setVisible}
+            visible={visible}
           >
             <Button className='p-0 border-none outline-none'>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
